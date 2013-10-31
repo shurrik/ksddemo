@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_tab"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TabHost
+        android:id="@+id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!-- 添加该布局可以方便控制，各个fragment与TabWidget控件之间的位置关系，此处选用相对布局，当然其他布局也可以考虑 -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- 注意：id必须设置为android:id="@android:id/tabs"，否则会抛异常 -->
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal" />
+
+            <!-- 注意：id必须设置为android:id="@android:id/tabcontent"，否则会抛异常 -->
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="470dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignBottom="@android:id/tabs" >
+
+                <!-- 注意：此处的fragment的第一个字母不要大写，另外：name标签的值为对应的fragment的java类的：包名+类名 -->
+
+                <fragment
+                    android:id="@+id/f1"
+                    android:name="com.kaoshidian.ksddemo.ui.fragment.Fragment1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <fragment
+                    android:id="@+id/f2"
+                    android:name="com.kaoshidian.ksddemo.ui.fragment.Fragment2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <fragment
+                    android:id="@+id/f3"
+                    android:name="com.kaoshidian.ksddemo.ui.fragment.Fragment3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+        </RelativeLayout>
+    </TabHost>
+
+</LinearLayout>
