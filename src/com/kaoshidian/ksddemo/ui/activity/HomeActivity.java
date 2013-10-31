@@ -1,10 +1,7 @@
 package com.kaoshidian.ksddemo.ui.activity;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.kaoshidian.ksddemo.R;
 import com.kaoshidian.ksddemo.support.BaseActivity;
