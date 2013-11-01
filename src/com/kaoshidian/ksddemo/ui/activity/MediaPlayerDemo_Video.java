@@ -6,13 +6,16 @@ import io.vov.vitamio.MediaPlayer.OnBufferingUpdateListener;
 import io.vov.vitamio.MediaPlayer.OnCompletionListener;
 import io.vov.vitamio.MediaPlayer.OnPreparedListener;
 import io.vov.vitamio.MediaPlayer.OnVideoSizeChangedListener;
+import io.vov.vitamio.widget.MediaController;
+import io.vov.vitamio.widget.VideoView;
 import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.widget.Toast;
 
 import com.kaoshidian.ksddemo.R;
@@ -23,7 +26,8 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 	private int mVideoWidth;
 	private int mVideoHeight;
 	private MediaPlayer mMediaPlayer;
-	private SurfaceView mPreview;
+	//private SurfaceView mPreview;
+	private VideoView mVideoView;
 	private SurfaceHolder holder;
 	private String path;
 	private Bundle extras;
@@ -35,6 +39,7 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 	private static final int STREAM_VIDEO = 5;
 	private boolean mIsVideoSizeKnown = false;
 	private boolean mIsVideoReadyToBePlayed = false;
+	private MediaController mMediaController;
 
 	/**
 	 * 
@@ -46,24 +51,36 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 		if (!LibsChecker.checkVitamioLibs(this))
 			return;
 		setContentView(R.layout.mediaplayer_2);
-		mPreview = (SurfaceView) findViewById(R.id.surface);
+/*		mPreview = (SurfaceView) findViewById(R.id.surface);
 		holder = mPreview.getHolder();
 		holder.addCallback(this);
-		holder.setFormat(PixelFormat.RGBA_8888); 
+		holder.setFormat(PixelFormat.RGBA_8888); */
+		mVideoView = (VideoView) findViewById(R.id.surface);
+		holder = mVideoView.getHolder();
+		holder.addCallback(this);
+		holder.setFormat(PixelFormat.RGBA_8888);
+		
+		path = "http://v.youku.com/player/getRealM3U8/vid/XNDgxMzQ3MTg4/type//video.m3u8";
+		mVideoView.setVideoURI(Uri.parse(path));
+		//设置显示名称
+		mMediaController = new MediaController(this);
+		mMediaController.setFileName("考试点demo");
+		mVideoView.setMediaController(mMediaController);
+		mVideoView.requestFocus();
 		extras = getIntent().getExtras();
 
 	}
 
-	private void playVideo(Integer Media) {
+/*	private void playVideo(Integer Media) {
 		doCleanUp();
 		try {
 
 			switch (Media) {
 			case LOCAL_VIDEO:
-				/*
+				
 				 * TODO: Set the path variable to a local media file path.
-				 */
-				/*path = "";*/
+				 
+				path = "";
 				path = "/mnt/sdcard/Movies/1.mp4";
 				if (path == "") {
 					// Tell the user to provide a media file URL.
@@ -72,7 +89,7 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 				}
 				break;
 			case STREAM_VIDEO:
-				/*
+				
 				 * TODO: Set path variable to progressive streamable mp4 or
 				 * 3gpp format URL. Http protocol should be used.
 				 * Mediaplayer can only play "progressive streamable
@@ -80,7 +97,7 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 				 * precede all the media data atoms. 2. The clip has to be
 				 * reasonably interleaved.
 				 * 
-				 */
+				 
 				//path = "";
 				path = "http://v.youku.com/player/getRealM3U8/vid/XNDgxMzQ3MTg4/type//video.m3u8";
 				if (path == "") {
@@ -108,7 +125,7 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 		} catch (Exception e) {
 			Log.e(TAG, "error: " + e.getMessage(), e);
 		}
-	}
+	}*/
 
 	public void onBufferingUpdate(MediaPlayer arg0, int percent) {
 		Log.d(TAG, "onBufferingUpdate percent:" + percent);
@@ -153,7 +170,8 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 	public void surfaceCreated(SurfaceHolder holder) {
 		Log.d(TAG, "surfaceCreated called");
 //		playVideo(extras.getInt(MEDIA));
-		playVideo(5);
+		//playVideo(5);
+		mVideoView.start();
 
 	}
 
@@ -190,4 +208,20 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 		holder.setFixedSize(mVideoWidth, mVideoHeight);
 		mMediaPlayer.start();
 	}
+	
+/*	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if (mGestureDetector.onTouchEvent(event))
+			return true;
+
+		// 处理手势结束
+		switch (event.getAction() & MotionEvent.ACTION_MASK) {
+		case MotionEvent.ACTION_UP:
+			endGesture();
+			break;
+		}
+		//Toast.makeText(MediaPlayerDemo_Video.this, "Please edit MediaPlayerDemo_Video Activity," + " and set the path variable to your media file URL.", Toast.LENGTH_LONG).show();
+		mVideoView.onTouchEvent(event);
+		return super.onTouchEvent(event);
+	}*/
 }
