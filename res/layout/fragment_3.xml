@@ -13,10 +13,9 @@
         android:layout_height="match_parent" >
     </ListView>
 
-    <ImageView
+    <com.kaoshidian.ksddemo.support.gif.GifView
         android:id="@+id/f3_loading"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/loading" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -3,9 +3,9 @@
     android:id="@+id/fragment_1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:gravity="center_vertical|center_horizontal"
-    android:orientation="vertical" 
-    android:background="#ffffff">
+    android:orientation="vertical" >
 
     <GridView
         android:id="@+id/todayRecommends"
@@ -19,16 +19,12 @@
         android:horizontalSpacing="3dp"
         android:numColumns="3"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="3dp" 
-        >
+        android:verticalSpacing="3dp" >
     </GridView>
 
-    
-         <ImageView
+    <com.kaoshidian.ksddemo.support.gif.GifView
         android:id="@+id/f1_loading"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:src="@drawable/loading"/>
-   
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -26,6 +26,7 @@ import com.kaoshidian.ksddemo.R;
 import com.kaoshidian.ksddemo.support.BaseActivity;
 import com.kaoshidian.ksddemo.support.RequestHandler;
 import com.kaoshidian.ksddemo.support.StaticVariable;
+import com.kaoshidian.ksddemo.support.gif.GifView;
 import com.kaoshidian.ksddemo.ui.activity.MediaPlayerDemo_Video;
 import com.kaoshidian.ksddemo.ui.adapter.MyCourseAdapter;
 
@@ -34,7 +35,7 @@ public class Fragment3 extends SherlockFragment{
 	private MyCourseAdapter myCourseAdapter;
     private List<Map> data = new ArrayList();
     private ListView myCourses;
-    private ImageView f3_loading;
+    private GifView f3_loading;
     private boolean ok;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class Fragment3 extends SherlockFragment{
     	View view = inflater.inflate(R.layout.fragment_3, container, false);
         myCourses = (ListView) view.findViewById(R.id.mycourses);
         //myCourses.setAdapter(myCourseAdapter);
-        f3_loading = (ImageView) view.findViewById(R.id.f3_loading);
+        f3_loading = (GifView) view.findViewById(R.id.f3_loading);
         if(ok)
         {
         	f3_loading.setVisibility(View.GONE);
@@ -58,6 +59,8 @@ public class Fragment3 extends SherlockFragment{
         }
         else
         {
+        	f3_loading.setGifImage(R.drawable.loading);
+        	f3_loading.showAnimation();
         	myCourses.setVisibility(View.GONE);
         }        
         final Activity activity = getSherlockActivity();
@@ -121,7 +124,7 @@ public class Fragment3 extends SherlockFragment{
         protected void onPostExecute(Void result) {
             myCourseAdapter = new MyCourseAdapter(activity, data);
             ListView lv = (ListView) activity.findViewById(R.id.mycourses);
-        	ImageView iv = (ImageView) activity.findViewById(R.id.f3_loading);
+            GifView iv = (GifView) activity.findViewById(R.id.f3_loading);
         	iv.setVisibility(View.GONE);
         	lv.setVisibility(View.VISIBLE);
         	lv.setAdapter(myCourseAdapter);

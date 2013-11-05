@@ -16,13 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ImageView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.kaoshidian.ksddemo.R;
 import com.kaoshidian.ksddemo.support.BaseActivity;
 import com.kaoshidian.ksddemo.support.RequestHandler;
 import com.kaoshidian.ksddemo.support.StaticVariable;
+import com.kaoshidian.ksddemo.support.gif.GifView;
 import com.kaoshidian.ksddemo.ui.adapter.TodayRecommendAdapter;
 
 public class Fragment1 extends SherlockFragment{
@@ -32,7 +32,7 @@ public class Fragment1 extends SherlockFragment{
     private List<Map> data = new ArrayList();
     private TodayRecommendAdapter todayRecommendAdapter;
     private ProgressDialog pDialog;
-    private ImageView f1_loading;
+    private GifView f1_loading;
     private boolean ok;
     /**
      * When creating, retrieve this instance's number from its arguments.
@@ -51,7 +51,7 @@ public class Fragment1 extends SherlockFragment{
     	
     	View view = inflater.inflate(R.layout.fragment_1, container, false);
         todayrecommends = (GridView) view.findViewById(R.id.todayRecommends);
-        f1_loading = (ImageView) view.findViewById(R.id.f1_loading);
+        f1_loading = (GifView) view.findViewById(R.id.f1_loading);
         if(ok)
         {
         	f1_loading.setVisibility(View.GONE);
@@ -59,6 +59,8 @@ public class Fragment1 extends SherlockFragment{
         }
         else
         {
+        	f1_loading.setGifImage(R.drawable.loading);
+        	f1_loading.showAnimation();
         	todayrecommends.setVisibility(View.GONE);
         }
     	
@@ -115,7 +117,7 @@ public class Fragment1 extends SherlockFragment{
         protected void onPostExecute(Void result) {
         	todayRecommendAdapter = new TodayRecommendAdapter(activity, data);
         	GridView gv = (GridView) activity.findViewById(R.id.todayRecommends);
-        	ImageView iv = (ImageView) activity.findViewById(R.id.f1_loading);
+        	GifView iv = (GifView) activity.findViewById(R.id.f1_loading);
         	iv.setVisibility(View.GONE);
         	gv.setVisibility(View.VISIBLE);
         	gv.setAdapter(todayRecommendAdapter);

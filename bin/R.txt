@@ -1,3 +1,6 @@
+int attr delay 0x7f010001
+int attr src 0x7f010000
+int attr stop 0x7f010002
 int color ksd_orange 0x7f070000
 int color ksd_theme_color 0x7f070001
 int dimen activity_horizontal_margin 0x7f080000
@@ -27,10 +30,12 @@ int drawable scrubber_progress_horizontal_holo_dark 0x7f020015
 int drawable scrubber_secondary_holo 0x7f020016
 int drawable scrubber_track_holo_dark 0x7f020017
 int drawable welcome_bg 0x7f020018
-int id action_settings 0x7f0a001d
+int id action_settings 0x7f0a0021
+int id buffer 0x7f0a001d
 int id courseCover 0x7f0a0019
 int id courseGrade 0x7f0a001c
 int id courseName 0x7f0a001a
+int id download_rate 0x7f0a001f
 int id f1 0x7f0a000d
 int id f1_loading 0x7f0a0002
 int id f2 0x7f0a000e
@@ -40,6 +45,7 @@ int id fragment_1 0x7f0a0000
 int id fragment_2 0x7f0a0003
 int id fragment_3 0x7f0a0005
 int id fragment_4 0x7f0a0008
+int id load_rate 0x7f0a0020
 int id main_tab 0x7f0a000b
 int id mediacontroller_file_name 0x7f0a0017
 int id mediacontroller_play_pause 0x7f0a0013
@@ -49,6 +55,7 @@ int id mediacontroller_time_total 0x7f0a0015
 int id mycourses 0x7f0a0006
 int id pager 0x7f0a000a
 int id password 0x7f0a0011
+int id probar 0x7f0a001e
 int id ratingBar 0x7f0a001b
 int id submit 0x7f0a0012
 int id surface 0x7f0a0018
@@ -68,7 +75,8 @@ int layout mediacontroller 0x7f030007
 int layout mediaplayer_2 0x7f030008
 int layout mycourse_item 0x7f030009
 int layout today_recommend_item 0x7f03000a
-int layout welcome 0x7f03000b
+int layout videobuffer 0x7f03000b
+int layout welcome 0x7f03000c
 int menu main 0x7f090000
 int raw libarm 0x7f040000
 int string VideoView_error_button 0x7f05000b
@@ -94,3 +102,7 @@ int style KsdActionBar 0x7f060005
 int style KsdTheme 0x7f060004
 int style MediaController_SeekBar 0x7f060000
 int style MediaController_Text 0x7f060001
+int[] styleable gifView { 0x7f010000, 0x7f010001, 0x7f010002 }
+int styleable gifView_delay 1
+int styleable gifView_src 0
+int styleable gifView_stop 2
