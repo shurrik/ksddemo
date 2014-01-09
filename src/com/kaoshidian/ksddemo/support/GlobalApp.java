@@ -3,8 +3,8 @@ package com.kaoshidian.ksddemo.support;
 import android.app.Application;
 
 public class GlobalApp extends Application {
-	private boolean isLogin = false;
-	private String sessionId;
+	public boolean isLogin = false;
+	public String sessionId;
 
 	public boolean isLogin(){
 	    return isLogin;
